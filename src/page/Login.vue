@@ -1,49 +1,55 @@
-<template>
-    <el-container>
-        <el-header>
-            <el-row>
-                <h1>University Educational Administrative System</h1>
-            </el-row>
-        </el-header>
-        <el-main>
-            <el-row type="flex" justify="center">
-                <el-col :span="6">
-                    <el-form :model="LoginForm" label-position="left" label-width="100px">
-                        <h2>Sign In</h2>
-                        <el-form-item label="User ID">
-                            <el-input v-model="LoginForm.id" placeholder="Your ID" clearable></el-input>
-                        </el-form-item>
-                        <el-form-item label="Password">
-                            <el-input v-model="LoginForm.pwd" type="password" placeholder="Your Password" clearable></el-input>
-                        </el-form-item>
-                        <el-form-item label="User Group">
-                            <el-select v-model="LoginForm.user_group" placeholder="Please choose your identity" style="width: 100%">
-                                <el-option label="Students" value="Student"></el-option>
-                                <el-option value="Instructor" label="Instructors"></el-option>
-                                <el-option value="Root" label="Root User"></el-option>
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item label="Captcha">
-                            <el-row>
-                                <el-col :span="12">
-                                    <el-input v-model="LoginForm.captcha" placeholder="Captcha code" clearable></el-input>
-                                </el-col>
-                                <el-col :span="12">
-                                    <img :src="captchaImgURL" @click="getCaptcha">
-                                </el-col>
 
-                            </el-row>
-                        </el-form-item>
-                        <el-button type="primary" @click="handleLogin" style="width: 80%; margin-top: 30px; margin-bottom: 10px">Log In</el-button>
-                    </el-form>
-                </el-col>
-            </el-row>
-        </el-main>
-        <el-footer>
-            <p><small>&copy; All Rights Reserved. Designed by Prophet.</small></p>
-            <input type="hidden" :value="LoginForm.verifyARGS">
-        </el-footer>
-    </el-container>
+<template>
+    <div class="container">
+        <el-container>
+            <el-header>
+                <el-row>
+                    <h1>University Educational Administrative System</h1>
+                </el-row>
+            </el-header>
+            <el-main>
+                <el-row type="flex" justify="center">
+                    <el-col :span="6">
+                        <el-form :model="LoginForm" label-position="left" label-width="100px" class="animated fadeIn">
+                            <h2>Sign In</h2>
+                            <el-form-item label="User ID" prop="id" :rules="[
+                              { type: 'number', message: 'Please input correct ID type!'}
+                            ]">
+                                <el-input v-model.number="LoginForm.id" placeholder="Your ID" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="Password">
+                                <el-input v-model="LoginForm.pwd" type="password" placeholder="Your Password" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="User Group">
+                                <el-select v-model="LoginForm.user_group" placeholder="Please choose your identity" style="width: 100%">
+                                    <el-option label="Students" value="Student"></el-option>
+                                    <el-option value="Instructor" label="Instructors"></el-option>
+                                    <el-option value="Root" label="Root User"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="Captcha">
+                                <el-row>
+                                    <el-col :span="12">
+                                        <el-input v-model="LoginForm.captcha" placeholder="Captcha code" clearable></el-input>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <img :src="captchaImgURL" @click="getCaptcha">
+                                    </el-col>
+
+                                </el-row>
+                            </el-form-item>
+                            <el-button type="primary" @click="handleLogin" style="width: 80%; margin-top: 30px; margin-bottom: 10px; font-size:18px">LOG IN</el-button>
+                        </el-form>
+                    </el-col>
+                </el-row>
+            </el-main>
+            <el-footer style="margin-top: 20px">
+                <p><small>&copy; All Rights Reserved. Designed by Prophet.</small></p>
+                <input type="hidden" :value="LoginForm.verifyARGS">
+            </el-footer>
+        </el-container>
+    </div>
+
 </template>
 
 <script>
@@ -58,8 +64,7 @@
                     id: '',
                     pwd: '',
                     user_group: '',
-                    captcha: '',
-                    verifyARGS: '',
+                    captcha: ''
                 },
                 captchaImgURL: '',
                 loginMessage: ''
@@ -75,7 +80,6 @@
                 this.$axios.get("http://localhost:8000/getVerificationCode").then((response)=>{
                     if(response.data.status === 'success'){
                         that.captchaImgURL = 'http://localhost:8000/' + response.data.data.url;
-                        that.LoginForm.verifyARGS = response.data.data.verifyARGS;
                     }
                 }).catch((err) => {
                     console.log(err);
@@ -89,7 +93,7 @@
                     }
                 }).then((resp) => {
                     if(resp.data.status === 'success'){
-                        // console.log(resp.data);
+                        console.log(resp.data);
                         that.loginMessage = resp.data.data;
                         this.$message({
                             message: that.loginMessage,
@@ -97,7 +101,7 @@
                             duration: 2000
                         });
                         setTimeout(()=>{
-                            this.$router.push('/');
+                            this.$router.push('/test');
                         }, 2000);
                     }else if(resp.data.status === 'Failed'){
                         // console.log(resp.data);
@@ -144,6 +148,7 @@
 </script>
 
 <style scoped>
+    @import "../../static/css/animate.css";
     .el-header, .el-footer {
         text-align: center;
         line-height: 60px;
@@ -188,6 +193,26 @@
         box-shadow: -2px 10px 20px -1px rgba(51, 204, 204, 0.4);
     }
 
+    .el-button:hover{
+        color: #ffffff;
+        background: #47d1d1 !important;
+        outline: none;
+    }
+
+    .el-footer{
+        color: #848484;
+        font-size: 16px;
+    }
+
+    .container{
+        line-height: 1.5;
+        font-size: 16px;
+        color: #848484;
+        background-color: #f0f0f0;
+        height: 100% !important;
+    }
+
+
 
 
 </style>
@@ -195,12 +220,5 @@
 <style>
     .el-message {
         margin-top: 160px !important;
-    }
-    body{
-        /*font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",sans-serif;*/
-        line-height: 1.5;
-        font-size: 16px;
-        color: #848484;
-        background-color: #f0f0f0;
     }
 </style>

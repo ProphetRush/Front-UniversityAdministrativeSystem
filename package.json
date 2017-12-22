@@ -12,9 +12,10 @@
   "dependencies": {
     "axios": "^0.17.1",
     "element-ui": "^2.0.8",
+    "qs": "^6.5.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "qs": "^6.5.1"
+    "vue-awesome": "^2.3.4",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
