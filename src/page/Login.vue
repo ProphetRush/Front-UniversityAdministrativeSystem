@@ -101,7 +101,7 @@
                             duration: 2000
                         });
                         setTimeout(()=>{
-                            this.$router.push('/test');
+                            this.$router.push('/');
                         }, 2000);
                     }else if(resp.data.status === 'Failed'){
                         // console.log(resp.data);

@@ -8,6 +8,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons'
+import pHeader from '@/components/Header';
+import pAside from '@/components/Aside';
 
 
 Vue.prototype.$axios = axios;
@@ -16,6 +18,8 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 Vue.component('icon', Icon);
+Vue.component('pHeader', pHeader);
+Vue.component('pAside', pAside);
 
 axios.defaults.withCredentials=true;
 /* eslint-disable no-new */

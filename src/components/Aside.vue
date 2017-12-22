@@ -1,13 +1,12 @@
 <template>
-    <div class="container">
-        <aside class="showSidebar">
-            <div class="menu-toggle" style="margin-top:30px; margin-bottom: 30px;" @click.prevent="collapse">
+        <aside :class="{showSidebar:!collapsed}">
+            <div class="menu-toggle" style="margin-top:60px; margin-bottom: 30px;" @click.prevent="collapse">
                 <icon name="bars" scale="1.5" style="margin-left: 160px" v-show="!collapsed"></icon>
                 <icon name="minus" scale="1.5" style="margin-left: 25px" v-show="collapsed"></icon>
             </div>
             <el-menu default-active="0" router :collapse="collapsed">
                 <template v-for="(item,index) of $router.options.routes" v-if="shouldShow(item)">
-                    <el-submenu v-if="!item.leaf" :index="index+''">
+                    <el-submenu v-if="!item.leaf" :index="index+''" :style="isAct(item)">
                         <template slot="title">
                             <icon :name="item.iconName" scale="1.5" :style="collapsed?'padding-left: 5;padding-right: 0;':'padding-left: 10px;padding-right: 10px;'"></icon>
                             <span slot="title">{{item.name}}</span>
@@ -23,9 +22,7 @@
                     </el-menu-item>
                 </template>
             </el-menu>
-
         </aside>
-    </div>
 </template>
 
 <script>
@@ -38,33 +35,42 @@
         data(){
             return {
                 collapsed: false,
-                user_group: 'Student'
-
             }
         },
+        props: ['user_group'],
         methods: {
             collapse: function(){
                 this.collapsed = !this.collapsed;
             },
             shouldShow(item){
                 return item.menuShow&&item.menuShow.indexOf(this.user_group) !== -1;
+            },
+            isAct(item){
+                console.log(this.collapsed&&(this.$route.path.indexOf(item.secondPath)!==-1));
+                return this.collapsed&&(this.$route.path.indexOf(item.secondPath)!==-1)?"background: #e4e0e0 !important;":"";
             }
 
         },
         mounted: function(){
-
+            console.log(this.$route.path);
         }
     }
 </script>
 
 <style scoped>
-    .container{
-        height: 100%;
-    }
+
     aside{
         min-width: 50px;
         background: #f1f1f1;
         height: 100%;
+    }
+
+    .menu-toggle{
+        border-right: solid 1px #e6e6e6
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
     }
     .showSidebar {
         overflow-x: hidden;
@@ -73,10 +79,11 @@
 
     .el-menu {
         height: 100%;
-        height: -moz-calc(100% - 80px);
-        height: -webkit-calc(100% - 80px);
-        height: calc(100% - 80px);
+        height: -moz-calc(100% - 130px);
+        height: -webkit-calc(100% - 130px);
+        height: calc(100% - 130px);
         background-color: #f1f1f1;
+        position: relative;
     }
     .el-submenu .el-menu-item {
         min-width: 60px;
@@ -98,6 +105,11 @@
     }
     .fa-icon{
         width: 25px !important;
+    }
+
+    .el-menu-item.is-active{
+        background: #e4e0e0;
+        color: #49505b;
     }
 
 

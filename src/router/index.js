@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/page/Login'
-import header from '@/components/header'
+import Header from '@/components/Header'
 import Home from '@/page/Home'
 import BriefPage from '@/components/BriefPage'
 import ExaminationResults from '@/components/ExaminationResults'
@@ -13,7 +13,7 @@ import TimeTable from '@/components/TimeTable'
 import CourseInfo from '@/components/CourseInfo'
 import changepwd from '@/components/ChangePassword'
 import profile from '@/components/UserProfile'
-import aside from '@/components/aside'
+import pAside from '@/components/Aside'
 
 Vue.use(Router)
 
@@ -42,7 +42,7 @@ export default new Router({
         {
             path: '/test',
             name: 'test',
-            component: aside
+            component: pAside
         },
 
         {
@@ -51,6 +51,7 @@ export default new Router({
             name: 'Examination Results Management',
             menuShow: ['Student'],
             iconName: 'graduation-cap',
+            secondPath: '/grades',
             children: [
                 {path: '/grades/MyResults', component:ExaminationResults, name: 'My Examination Results', menuShow: ['Student']},
                 {path: '/grades/Query', component: QueryGrades, name: 'Query Results by Terms', menuShow: ['Student']}
@@ -64,6 +65,7 @@ export default new Router({
             name: 'Course Registration Management',
             menuShow: ['Student'],
             iconName: 'book',
+            secondPath: 'RegCourse',
             children: [
                 {path: '/RegCourse/QueryPrevious', component: QueryPreviousSelSec, name: 'Query Previous Selected Sections',  menuShow: ['Student']},
                 {path: '/RegCourse/QueryAndSelect', component: QueryAndSelectSecs, name: 'Query & Select Sections', menuShow: ['Student']},
@@ -91,6 +93,7 @@ export default new Router({
             name: 'Settings',
             menuShow: ['Student','Instructor','Root'],
             iconName: 'cog',
+            secondPath: '/settings',
             children: [
                 {path: '/settings/profile', component: profile, name: 'User Profile', menuShow: ['Student','Instructor','Root']},
                 {path: '/settings/changepwd', component: changepwd, name: 'Change Password', menuShow: ['Student','Instructor','Root']}

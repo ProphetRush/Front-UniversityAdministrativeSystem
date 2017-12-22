@@ -6,15 +6,15 @@
                     <a href="/" class="logo" style="padding-left:16px; text-align: center">PROPHET</a>
                 </div>
                 <div class="topbar-title">
-                    <span style="font-size: 24px; color:#848484; padding-right: 16%;">University  Administrative System</span>
+                    <span style="font-size: 24px; color:#848484;">University  Administrative System</span>
                 </div>
                 <div class="topbar-account topbar-btn">
                     <el-dropdown trigger="hover">
                         <span class="el-dropdown-link userinfo-inner"><icon name="user-o"></icon><i class="el-icon-arrow-down el-icon--right"></i></span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item class="AccountInfo">
-                                <h3>Welcome, <span>{{user.username}}</span>!</h3>
-                                <p>Role: <span>{{user.user_group}}</span></p>
+                                <h3>Welcome, <span>{{username}}</span>!</h3>
+                                <p>Role: <span>{{user_group}}</span></p>
                             </el-dropdown-item>
                             <el-dropdown-item divided>
                                 <router-link to="/user/profile"><span style="color: #555;font-size: 14px;">User Profile</span></router-link>
@@ -29,8 +29,6 @@
                 </div>
             </el-col>
         </el-row>
-
-
     </el-header>
 </template>
 
@@ -41,34 +39,7 @@
     export default {
         components: {Icon},
         name: "header",
-        data(){
-            return{
-                user:{
-                    uuid: '',
-                    username: '',
-                    user_group: '',
-                    group_id: ''
-                }
-
-            }
-        },
-        mounted(){
-            var that = this;
-            this.$axios.get("http://localhost:8000/getUser").then((resp) => {
-                if(resp.data.status === 'success'){
-                    that.user.username = resp.data.data.username;
-                    that.user.user_group = resp.data.data.user_group;
-                    that.user.uuid = resp.data.data.id;
-                    that.user.group_id = resp.data.data.group_id;
-                    console.log(that.user);
-                }else{
-                    this.$router.push("/login");
-                }
-            }).catch((err) =>{
-                console.log(err);
-                this.$router.push("/login");
-            })
-        },
+        props: ['username', 'user_group'],
         methods: {
             logout: function () {
                 let that = this;
@@ -78,7 +49,7 @@
                     cancelButtonText: 'Cancel',
                     center: true
                 }).then(() => {
-                    that.$axios.get("http://localhost:8000/getUser").then((resp) => {
+                    that.$axios.get("http://localhost:8000/logout").then((resp) => {
                         if(resp.data.status === 'success'){
                             this.$message({
                                 message: "Logout Success! Going to login page...",
@@ -123,6 +94,7 @@
         top: 0;
         bottom: 0;
         width: 100%;
+        left: 0;
     }
 
     .topbar-wrap {
@@ -155,5 +127,9 @@
 
     .el-button--primary{
         background: #f1f1f1 !important;
+    }
+
+    .el-dropdown{
+        padding-left: 30px;
     }
 </style>
