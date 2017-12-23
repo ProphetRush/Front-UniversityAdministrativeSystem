@@ -3,7 +3,9 @@
         <p-header :username="user.username" :user_group="user.user_group"></p-header>
         <el-container>
             <p-aside :user_group="user.user_group"></p-aside>
-            <el-main></el-main>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
         </el-container>
     </div>
 

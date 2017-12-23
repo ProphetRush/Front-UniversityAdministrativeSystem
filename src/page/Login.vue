@@ -71,9 +71,6 @@
             }
         },
         methods: {
-            onSubmit() {
-                console.log('submit!');
-            },
             getCaptcha(){
                 var that = this;
                 var captchaUrl = '';
@@ -93,7 +90,6 @@
                     }
                 }).then((resp) => {
                     if(resp.data.status === 'success'){
-                        console.log(resp.data);
                         that.loginMessage = resp.data.data;
                         this.$message({
                             message: that.loginMessage,
