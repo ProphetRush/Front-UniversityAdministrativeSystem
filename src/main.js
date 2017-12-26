@@ -10,11 +10,12 @@ import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons'
 import pHeader from '@/components/Header';
 import pAside from '@/components/Aside';
+import locale from 'element-ui/lib/locale/lang/en'
 
 
 Vue.prototype.$axios = axios;
 
-Vue.use(ElementUI);
+Vue.use(ElementUI, {locale});
 
 Vue.config.productionTip = false;
 Vue.component('icon', Icon);
