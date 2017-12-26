@@ -136,7 +136,8 @@
                                 this.$message({
                                     message: resp.data.message,
                                     type: 'success',
-                                    duration: 2000
+                                    duration: 2000,
+                                    customClass: 'message-changepwd'
                                 });
                                 setTimeout(()=>{
                                     this.$router.push('/login');
@@ -145,14 +146,16 @@
                                 this.$message({
                                     message: resp.data.message,
                                     type: 'error',
-                                    duration: 2000
+                                    duration: 2000,
+                                    customClass: 'message-changepwd'
                                 });
                             }else {
                                 that.loginMessage = 'Unknown Error! Please Try Again!';
                                 this.$message({
                                     message: that.loginMessage,
                                     type: 'error',
-                                    duration: 2000
+                                    duration: 2000,
+                                    customClass: 'message-changepwd'
                                 });
                             }
                         }).catch((err) => {
@@ -160,7 +163,8 @@
                             this.$message({
                                 message: that.loginMessage,
                                 type: 'error',
-                                duration: 2000
+                                duration: 2000,
+                                customClass: 'message-changepwd'
                             });
                             console.log(err);
                         })
@@ -236,4 +240,13 @@
         font-size: 16px;
     }
 
+
+
+</style>
+
+<style>
+    .message-changepwd {
+        margin-top: 210px !important;
+        margin-left: 180px;
+    }
 </style>

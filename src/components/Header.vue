@@ -54,7 +54,8 @@
                             this.$message({
                                 message: "Logout Success! Going to login page...",
                                 type: 'success',
-                                duration: 2000
+                                duration: 2000,
+                                customClass: 'message-logout'
                             });
                             setTimeout(()=>{
                                 that.$router.push('/login');
@@ -63,7 +64,8 @@
                             that.$message({
                                 message: resp.data.message,
                                 type: 'error',
-                                duration: 2000
+                                duration: 2000,
+                                customClass: 'message-logout'
                             });
                         }
                     }).catch((err) => {
@@ -131,5 +133,12 @@
 
     .el-dropdown{
         padding-left: 30px;
+    }
+</style>
+
+<style>
+    .message-logout{
+        margin-top: 90px;
+        margin-left: 180px;
     }
 </style>

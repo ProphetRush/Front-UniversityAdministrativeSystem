@@ -12,8 +12,8 @@
         <el-row type="flex" justify="center">
             <el-col :span="20" class="warp-main" v-loading="loading" element-loading-text="Loading...">
                 <el-col :span="24" class="toolbar">
-                    <el-form :inline="true" :model="args">
-                        <el-form-item>
+                    <el-form :inline="true" :model="args" ref="args" status-icon :rules="rules">
+                        <el-form-item prop="year">
                             <el-input v-model="args.year" placeholder="Please input the year"></el-input>
                         </el-form-item>
                         <el-form-item>
@@ -70,6 +70,18 @@
                 },
                 results: [],
                 loading: false,
+                rules: {
+                    year: [
+                        { validator: (rule, value, callback) => {
+                                if (value<2001 || value>2018) {
+                                    callback(new Error('Please input correct year!'));
+                                } else {
+                                    callback();
+                                }
+                            }, trigger: 'blur' }
+                    ],
+
+                }
             }
         },
         mounted: function () {

@@ -94,7 +94,8 @@
                         this.$message({
                             message: that.loginMessage,
                             type: 'success',
-                            duration: 2000
+                            duration: 2000,
+                            customClass: 'message-login'
                         });
                         setTimeout(()=>{
                             this.$router.push('/');
@@ -105,7 +106,8 @@
                         this.$message({
                             message: that.loginMessage,
                             type: 'error',
-                            duration: 2000
+                            duration: 2000,
+                            customClass: 'message-login'
                         });
                         that.loginMessage = resp.data.message;
                         that.getCaptcha();
@@ -117,7 +119,8 @@
                         this.$message({
                             message: that.loginMessage,
                             type: 'error',
-                            duration: 2000
+                            duration: 2000,
+                            customClass: 'message-login'
                         });
                         that.getCaptcha();
                         that.LoginForm.pwd = '';
@@ -128,7 +131,8 @@
                     this.$message({
                         message: that.loginMessage,
                         type: 'error',
-                        duration: 2000
+                        duration: 2000,
+                        customClass: 'message-login'
                     });
                     console.log(err);
                     that.getCaptcha();
@@ -214,7 +218,7 @@
 </style>
 
 <style>
-    .el-message {
+    .message-login {
         margin-top: 160px !important;
     }
 </style>
