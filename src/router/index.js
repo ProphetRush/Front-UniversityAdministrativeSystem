@@ -8,7 +8,7 @@ import BriefPage from '@/components/BriefPage'
 import ExaminationResults from '@/components/ExaminationResults'
 import QueryGrades from '@/components/QueryGrades'
 import QueryAndSelectSecs from '@/components/QueryAndSelectSecs'
-import QueryPreviousSelSec from '@/components/QueryPreviousSelSec'
+import QuerySec from '@/components/QuerySec'
 import TimeTable from '@/components/TimeTable'
 import CourseInfo from '@/components/CourseInfo'
 import changepwd from '@/components/ChangePassword'
@@ -63,11 +63,11 @@ export default new Router({
             path: '/',
             component: Home,
             name: 'Course Registration Management',
-            menuShow: ['Student'],
+            menuShow: ['Student', 'Instructor', 'Root'],
             iconName: 'book',
             secondPath: 'RegCourse',
             children: [
-                {path: '/RegCourse/QueryPrevious', component: QueryPreviousSelSec, name: 'Query Previous Selected Sections',  menuShow: ['Student']},
+                {path: '/RegCourse/QueryPrevious', component: QuerySec, name: 'Query Sections',  menuShow: ['Student', 'Instructor', 'Root']},
                 {path: '/RegCourse/QueryAndSelect', component: QueryAndSelectSecs, name: 'Query & Select Sections', menuShow: ['Student']},
                 {path: '/RegCourse/TimeTable', component: QueryAndSelectSecs, name: 'TimeTable', menuShow: ['Student']}
 
@@ -79,11 +79,11 @@ export default new Router({
             path: '/',
             component: Home,
             name: 'Course Information Management',
-            menuShow: ['Student'],
+            menuShow: ['Student', 'Instructor', 'Root'],
             leaf: true,
             iconName: 'info',
             children: [
-                {path: '/course', component: CourseInfo, name: 'Course Information Center', menuShow: ['Student']}
+                {path: '/course', component: CourseInfo, name: 'Course Information Center', menuShow: ['Student', 'Instructor', 'Root']}
             ]
         },
 
