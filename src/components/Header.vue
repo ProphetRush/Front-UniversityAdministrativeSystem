@@ -20,7 +20,7 @@
                                 <router-link to="/user/profile"><span style="color: #555;font-size: 14px;">User Profile</span></router-link>
                             </el-dropdown-item>
                             <el-dropdown-item>
-                                <router-link to="/user/changepwd"><span style="color: #555;font-size: 14px;">Change Password</span></router-link>
+                                <router-link to="/settings/changepwd"><span style="color: #555;font-size: 14px;">Change Password</span></router-link>
                             </el-dropdown-item>
                             <el-dropdown-item divided @click.native="logout">Log Out</el-dropdown-item>
                         </el-dropdown-menu>

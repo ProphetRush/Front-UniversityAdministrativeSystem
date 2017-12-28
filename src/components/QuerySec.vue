@@ -58,8 +58,8 @@
                                 </el-form-item>
                             </el-row>
                             <el-row type="flex"  style="margin-top: 50px; margin-left: 20%">
-                                <el-button type="primary" style="width: 25%" plain @click="getResults">QUERY</el-button>
-                                <el-button type="success" style="width:25%; margin-left: 32%" plain @click="resetForm">RESET</el-button>
+                                <el-button type="primary" style="width: 25%;font-size:18px;letter-spacing: 2px" plain @click="getResults">QUERY</el-button>
+                                <el-button type="success" style="width:25%; margin-left: 32%;font-size:18px;letter-spacing: 2px" plain @click="resetForm">RESET</el-button>
                             </el-row>
                         </el-form>
 
@@ -67,7 +67,7 @@
                     <el-collapse-item name="resultView">
                         <template slot="title"><h2>Result View</h2></template>
                         <div>
-                            <el-table :data="results" stripe border  height="600" style="text-align: center">
+                            <el-table :data="results" stripe border  height="600" style="text-align: center" class="animated fadeIn">
                                 <el-table-column prop="course_id" label="Course ID" width="90px"></el-table-column>
                                 <el-table-column prop="title" label="Course Name" width="280" sortable></el-table-column>
                                 <el-table-column prop="instructor" label="Instructor" width="115px"  sortable></el-table-column>
@@ -105,13 +105,7 @@
 </template>
 
 <script>
-
-
-    import ElButton from "element-ui/packages/button/src/button";
-
     export default {
-
-        components: {ElButton},
         name: "query-sec",
         data(){
             return{
@@ -209,6 +203,7 @@
 </script>
 
 <style scoped>
+    @import "../../static/css/animate.css";
     .warp-breadcrum{
         margin-top: 20px;
         margin-left: 10px;
