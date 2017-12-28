@@ -68,7 +68,7 @@ export default new Router({
             children: [
                 {path: '/RegCourse/QueryPrevious', component: QuerySec, name: 'Query Sections',  menuShow: ['Student', 'Instructor', 'Root']},
                 {path: '/RegCourse/QueryAndSelect', component: QueryAndSelectSecs, name: 'Query & Select Sections', menuShow: ['Student']},
-                {path: '/RegCourse/TimeTable', component: QueryAndSelectSecs, name: 'TimeTable', menuShow: ['Student']}
+                {path: '/RegCourse/TimeTable', component: TimeTable, name: 'TimeTable', menuShow: ['Student']}
 
 
             ]

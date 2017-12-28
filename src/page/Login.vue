@@ -33,7 +33,7 @@
                                         <el-input v-model="LoginForm.captcha" placeholder="Captcha code" clearable></el-input>
                                     </el-col>
                                     <el-col :span="12">
-                                        <img :src="captchaImgURL" @click="getCaptcha">
+                                        <img :src="captchaImgURL" @click="getCaptcha" :loading="loading">
                                     </el-col>
 
                                 </el-row>
@@ -45,7 +45,6 @@
             </el-main>
             <el-footer style="margin-top: 20px">
                 <p><small>&copy; All Rights Reserved. Designed by Prophet.</small></p>
-                <input type="hidden" :value="LoginForm.verifyARGS">
             </el-footer>
         </el-container>
     </div>
@@ -67,16 +66,19 @@
                     captcha: ''
                 },
                 captchaImgURL: '',
-                loginMessage: ''
+                loginMessage: '',
+                loading: false
             }
         },
         methods: {
             getCaptcha(){
+                this.loading = true;
                 var that = this;
                 var captchaUrl = '';
                 this.$axios.get("http://localhost:8000/getVerificationCode").then((response)=>{
                     if(response.data.status === 'success'){
                         that.captchaImgURL = 'http://localhost:8000/' + response.data.data.url;
+                        that.loading = false;
                     }
                 }).catch((err) => {
                     console.log(err);

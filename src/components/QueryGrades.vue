@@ -40,9 +40,9 @@
                         <el-table-column prop="grade" label="Grade" width="100" sortable></el-table-column>
                         <el-table-column label="Status">
                             <template slot-scope="scope">
-                                <el-tag v-if="scope.row.grade !== 'C-' && scope.row.grade !== ''" type="success">Passed</el-tag>
+                                <el-tag v-if="scope.row.grade === undefined" >Ongoing</el-tag>
+                                <el-tag v-if="scope.row.grade !== 'C-' && scope.row.grade !== undefined" type="success">Passed</el-tag>
                                 <el-tag v-if="scope.row.grade === 'C-'" type="danger">Failed</el-tag>
-                                <el-tag v-if="scope.row.grade === ''" >Ongoing</el-tag>
                             </template>
                         </el-table-column>
                     </el-table>
