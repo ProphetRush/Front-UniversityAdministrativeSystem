@@ -12,7 +12,7 @@
         <el-row type="flex" justify="center" style="margin-top: 6em">
             <el-col :span="16" class="warp-main" v-loading="loading" element-loading-text="Loading...">
                 <h2>User Profile</h2>
-                <el-form :model="profile"  class="animated fadeIn" status-icon>
+                <el-form :model="submitForm"  class="animated fadeIn" status-icon>
                     <el-row type="flex" style="margin-left: 10%">
                         <el-form-item  style="width: 50%">
                             <el-row type="flex">
@@ -51,16 +51,17 @@
                         </el-form-item>
                     </el-row>
                     <el-row type="flex"  style="margin-left: 10%">
-                        <el-form-item  style="width: 50%">
+                        <el-form-item  style="width: 50%" prop="email"  :rules="[
+                                          { type: 'email', message: 'Please enter correct email type!', trigger: 'blur,change' }]">
                             <el-row type="flex">
                                 <p>E-Mail: <span v-if="!changemode">{{profile.email}}</span></p>
                                 <el-input v-model="submitForm.email" v-if="changemode" placeholder="Change your email" clearable style="margin-left: 20px; width: 70%;"></el-input>
                             </el-row>
                         </el-form-item>
                         <el-form-item  style="width: 50%" prop="phone" :rules="[
-                              { type: 'number', message: 'Please input correct ID type!'}
+                              { type: 'number', message: 'Please input correct phone number!'}
                             ]">
-                            <el-row type="flex">
+                            <el-row type="flex" >
                                 <p>Phone Number: <span  style="margin-left: 20px" v-if="!changemode">{{profile.phone}}</span></p>
                                 <el-input v-model.number="submitForm.phone" v-if="changemode" placeholder="Change your phone" clearable style="margin-left: 20px; width: 70%;" ></el-input>
                             </el-row>
