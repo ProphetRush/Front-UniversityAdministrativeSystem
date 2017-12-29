@@ -111,9 +111,11 @@
                         console.log(this.profile);
                     }else{
                         that.$alert(resp.data.msg, 'Error');
+                        this.loading = false;
                     }
                 }).catch((err) =>{
                     console.log(err);
+                    this.loading = false;
                 })
             },
             submit: function (){

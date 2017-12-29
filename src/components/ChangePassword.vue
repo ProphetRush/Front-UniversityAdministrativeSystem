@@ -16,7 +16,7 @@
                     <el-form-item :label="user.user_group+' ID'">
                         <p>{{user.group_id}}</p>
                     </el-form-item>
-                    <el-form-item :label="user.user_group+' Name'">
+                    <el-form-item label="Username">
                         <p>{{user.username}}</p>
                     </el-form-item>
                     <el-form-item label="Previous Password" prop="previousPwd">

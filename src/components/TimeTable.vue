@@ -198,10 +198,11 @@
                 debugger
                 for(let sec of this.selectedSection){
                     if(chr.indexOf(sec.time_slot_id) !== -1){
-                        console.log(sec);
-                        this.timetable[Math.floor(chr.indexOf(sec.time_slot_id)/7)][week[Math.floor(chr.indexOf(sec.time_slot_id)/3)]] = sec;
+                        console.log((chr.indexOf(sec.time_slot_id)/3));
+                        this.timetable[chr.indexOf(sec.time_slot_id)%3][week[Math.floor(chr.indexOf(sec.time_slot_id)/3)]] = sec;
                     }
                 }
+                console.log(this.timetable);
             }
         }
 

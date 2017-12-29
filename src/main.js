@@ -11,9 +11,11 @@ import 'vue-awesome/icons'
 import pHeader from '@/components/Header';
 import pAside from '@/components/Aside';
 import locale from 'element-ui/lib/locale/lang/en'
+import echarts from "echarts"
 
 
 Vue.prototype.$axios = axios;
+Vue.prototype.$echarts = echarts;
 
 Vue.use(ElementUI, {locale});
 
@@ -21,6 +23,8 @@ Vue.config.productionTip = false;
 Vue.component('icon', Icon);
 Vue.component('pHeader', pHeader);
 Vue.component('pAside', pAside);
+
+
 
 axios.defaults.withCredentials=true;
 /* eslint-disable no-new */

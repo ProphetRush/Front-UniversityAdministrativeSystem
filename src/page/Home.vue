@@ -35,7 +35,6 @@
                     that.user.user_group = resp.data.data.user_group;
                     that.user.uuid = resp.data.data.id;
                     that.user.group_id = resp.data.data.group_id;
-                    console.log(that.user);
                 }else{
                     this.$router.push("/login");
                 }
