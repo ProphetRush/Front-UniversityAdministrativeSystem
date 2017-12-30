@@ -116,7 +116,7 @@
             getResults: function(){
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/getGrades").then((resp) => {
+                this.$axios.get("/api/getGrades").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.results = resp.data.data;
                         that.showResults = that.results.slice(0);

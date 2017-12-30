@@ -106,7 +106,7 @@
 
         mounted: function(){
             var that = this;
-            this.$axios.get("http://localhost:8000/getUser").then((resp) => {
+            this.$axios.get("/api/getUser").then((resp) => {
                 if(resp.data.status === 'success'){
                     that.user.username = resp.data.data.username;
                     that.user.user_group = resp.data.data.user_group;
@@ -127,7 +127,7 @@
                 this.$refs['pwdForm'].validate((valid) => {
                     if (valid) {
                         var that = this;
-                        this.$axios.post("http://localhost:8000/changePassword", qs.stringify(this.pwdForm), {
+                        this.$axios.post("/api/changePassword", qs.stringify(this.pwdForm), {
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded'
                             }

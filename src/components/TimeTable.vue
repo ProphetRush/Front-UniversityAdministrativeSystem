@@ -180,7 +180,7 @@
         methods: {
             getSelectedSections(){
                 let that = this;
-                this.$axios.get("http://localhost:8000/getSectionsTaken").then((resp) => {
+                this.$axios.get("/api/getSectionsTaken").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.selectedSection = resp.data.data;
                         that.makeTimeTable();

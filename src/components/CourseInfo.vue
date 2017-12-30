@@ -99,7 +99,7 @@
             getDepts: function () {
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/getAllDept").then((resp) => {
+                this.$axios.get("/api/getAllDept").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.depts = resp.data.data;
                         this.loading = false;
@@ -123,7 +123,7 @@
             getResults: function(){
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/getCourse", {params:this.queryForm}).then((resp) => {
+                this.$axios.get("/api/getCourse", {params:this.queryForm}).then((resp) => {
                     if(resp.data.status === 'success'){
                         that.results = resp.data.data;
                         this.loading = false;

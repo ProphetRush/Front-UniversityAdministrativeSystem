@@ -104,7 +104,7 @@
             getProfile: function () {
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/getProfile").then((resp) => {
+                this.$axios.get("/api/getProfile").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.profile = resp.data.data[0];
                         this.loading = false;
@@ -120,7 +120,7 @@
             },
             submit: function (){
                 let that = this;
-                this.$axios.post("http://localhost:8000/updateProfile", qs.stringify(this.submitForm), {
+                this.$axios.post("/api/updateProfile", qs.stringify(this.submitForm), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }

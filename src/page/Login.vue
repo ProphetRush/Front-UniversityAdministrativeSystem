@@ -75,9 +75,9 @@
                 this.loading = true;
                 var that = this;
                 var captchaUrl = '';
-                this.$axios.get("http://localhost:8000/getVerificationCode").then((response)=>{
+                this.$axios.get("/api/getVerificationCode").then((response)=>{
                     if(response.data.status === 'success'){
-                        that.captchaImgURL = 'http://localhost:8000/' + response.data.data.url;
+                        that.captchaImgURL = '/api/' + response.data.data.url;
                         that.loading = false;
                     }
                 }).catch((err) => {
@@ -86,7 +86,7 @@
             },
             handleLogin(){
                 var that = this;
-                this.$axios.post("http://localhost:8000/verifyLogin", qs.stringify(this.LoginForm), {
+                this.$axios.post("/api/verifyLogin", qs.stringify(this.LoginForm), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }

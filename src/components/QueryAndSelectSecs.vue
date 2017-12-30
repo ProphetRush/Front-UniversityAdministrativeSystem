@@ -175,7 +175,7 @@
             getDepts: function () {
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/getAllDept").then((resp) => {
+                this.$axios.get("/api/getAllDept").then((resp) => {
                     if (resp.data.status === 'success') {
                         that.depts = resp.data.data;
                         this.loading = false;
@@ -204,7 +204,7 @@
             querySections: function () {
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/querySections", {params:this.queryForm}).then((resp) => {
+                this.$axios.get("/api/querySections", {params:this.queryForm}).then((resp) => {
                     if(resp.data.status === 'success'){
                         that.results = resp.data.data;
                         this.loading = false;
@@ -218,7 +218,7 @@
             },
             getLeftCredits: function () {
                 let that = this;
-                this.$axios.get("http://localhost:8000/getLeftCredits").then((resp) => {
+                this.$axios.get("/api/getLeftCredits").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.leftCredits = resp.data.data;
                     }else{
@@ -236,7 +236,7 @@
                     semester: row.semester,
                     yr: row.year
                 };
-                this.$axios.post("http://localhost:8000/takeSection", qs.stringify(args), {
+                this.$axios.post("/api/takeSection", qs.stringify(args), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
@@ -271,7 +271,7 @@
                     semester: row.semester,
                     yr: row.year
                 };
-                this.$axios.post("http://localhost:8000/deleteTakenSection", qs.stringify(args), {
+                this.$axios.post("/api/deleteTakenSection", qs.stringify(args), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
@@ -300,7 +300,7 @@
             },
             getSelectedSections(){
                 let that = this;
-                this.$axios.get("http://localhost:8000/getSectionsTaken").then((resp) => {
+                this.$axios.get("/api/getSectionsTaken").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.selectedSection = resp.data.data;
                     }else{

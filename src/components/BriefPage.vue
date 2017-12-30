@@ -147,7 +147,7 @@
 
             getUser: function () {
                 var that = this;
-                this.$axios.get("http://localhost:8000/getUser").then((resp) => {
+                this.$axios.get("/api/getUser").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.user.username = resp.data.data.username;
                         that.user.user_group = resp.data.data.user_group;
@@ -220,7 +220,7 @@
             getGrades: function(){
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/getGradesByTerms", {params:{
+                this.$axios.get("/api/getGradesByTerms", {params:{
                         year: '',
                         semester: ''
                     }}).then((resp) => {
@@ -228,12 +228,10 @@
                         that.grades = resp.data.data;
                         this.loading = false;
                     }else{
-                        that.$alert(resp.data.msg, 'Error');
-                        that.$router.push("/");
+                        console.log(resp.data.msg, 'Error');
                     }
                 }).catch((err) =>{
                     console.log(err);
-                    that.$router.push("");
                 })
             },
 
@@ -270,7 +268,7 @@
             getProfile: function () {
                 let that = this;
                 this.loading = true;
-                this.$axios.get("http://localhost:8000/getProfile").then((resp) => {
+                this.$axios.get("/api/getProfile").then((resp) => {
                     if(resp.data.status === 'success'){
                         that.student.name = resp.data.data[0].name;
                         that.student.id = resp.data.data[0].id;
@@ -281,7 +279,7 @@
                         this.loading = false;
                         console.log(that.student.leftCredits);
                     }else{
-                        that.$alert(resp.data.msg, 'Error');
+                        console.log(resp.data.msg, 'Error');
                     }
                 }).catch((err) =>{
                     console.log(err);

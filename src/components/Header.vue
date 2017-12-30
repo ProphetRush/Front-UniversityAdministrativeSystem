@@ -17,7 +17,7 @@
                                 <p>Role: <span>{{user_group}}</span></p>
                             </el-dropdown-item>
                             <el-dropdown-item divided>
-                                <router-link to="/user/profile"><span style="color: #555;font-size: 14px;">User Profile</span></router-link>
+                                <router-link to="/settings/profile"><span style="color: #555;font-size: 14px;">User Profile</span></router-link>
                             </el-dropdown-item>
                             <el-dropdown-item>
                                 <router-link to="/settings/changepwd"><span style="color: #555;font-size: 14px;">Change Password</span></router-link>
@@ -49,7 +49,7 @@
                     cancelButtonText: 'Cancel',
                     center: true
                 }).then(() => {
-                    that.$axios.get("http://localhost:8000/logout").then((resp) => {
+                    that.$axios.get("/api/logout").then((resp) => {
                         if(resp.data.status === 'success'){
                             this.$message({
                                 message: "Logout Success! Going to login page...",
